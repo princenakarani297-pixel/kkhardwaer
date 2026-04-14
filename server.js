@@ -60,8 +60,7 @@ app.post("/send", async (req, res) => {
 
         // ===== EMAIL CONFIG =====
         
-      app.get("/test", async (req,res)=>{
-
+    
 try{
 
 let transporter = nodemailer.createTransport({
