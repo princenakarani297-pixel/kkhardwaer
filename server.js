@@ -70,12 +70,14 @@ app.post("/send", async (req, res) => {
 });
 
         // ===== SEND MAIL =====
-        await transporter.sendMail({
-            from: "kkhardware2309@gmail.com",
-            to: "kkhardware2309@gmail.com",
-            subject: "🆕 New Inquiry - KK Hardware",
-            html: html
-        });
+        const info = await transporter.sendMail({
+    from: "kkhardware2309@gmail.com",
+    to: "kkhardware2309@gmail.com",
+    subject: "🆕 New Inquiry - KK Hardware",
+    html: html
+});
+
+console.log("Mail Sent:", info.response);
 
         res.json({ message: "✅ Success" });
 
