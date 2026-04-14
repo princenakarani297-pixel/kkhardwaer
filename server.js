@@ -8,7 +8,7 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-app.use(cors({ origin: "*" }));
+app.use(cors());
 
 // ================= TEST ROUTE =================
 app.get("/", (req, res) => {
@@ -22,21 +22,10 @@ app.post("/send", async (req, res) => {
 
         const data = req.body;
 
-        // ===== SAVE DATA IN FILE =====
-        let existing = [];
-
-        if (fs.existsSync("data.json")) {
-            try {
-                existing = JSON.parse(fs.readFileSync("data.json"));
-            } catch {
-                existing = [];
-            }
+        // ===== BASIC VALIDATION =====
+        if (!data.Name || !data.Email || !data["Mobile No"] || !data.Message) {
+            return res.status(400).json({ message: "All fields required" });
         }
-
-        data.date = new Date().toLocaleString();
-        existing.push(data);
-
-        fs.writeFileSync("data.json", JSON.stringify(existing, null, 2));
 
         // ===== EMAIL HTML =====
         let rows = Object.keys(data).map(key => `
@@ -52,34 +41,42 @@ app.post("/send", async (req, res) => {
             <table style="border-collapse:collapse;width:100%;background:#fff">
                 ${rows}
             </table>
-            <p style="font-size:12px;color:#777;margin-top:10px">
-                Auto-generated from website
-            </p>
         </div>
         `;
 
-        // ===== EMAIL CONFIG =====
+        // ===== EMAIL CONFIG (FIXED) =====
         let transporter = nodemailer.createTransport({
-            service: "gmail",
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true, // 🔥 important
             auth: {
-                 user: process.env.EMAIL_USER,
-                 pass: process.env.EMAIL_PASS
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS
             }
         });
 
+        // ===== VERIFY CONNECTION =====
+        await transporter.verify();
+        console.log("✅ SMTP Ready");
+
         // ===== SEND MAIL =====
         await transporter.sendMail({
-            from: "kkhardware2309@gmail.com",
-            to: "kkhardware2309@gmail.com",
+            from: `"KK Hardware" <${process.env.EMAIL_USER}>`,
+            to: process.env.EMAIL_USER,
             subject: "🆕 New Inquiry - KK Hardware",
             html: html
         });
 
+        console.log("✅ Mail Sent Successfully");
+
         res.json({ message: "✅ Success" });
 
     } catch (err) {
-        console.log("❌ ERROR:", err);
-        res.status(500).json({ message: "Error", error: err.message });
+        console.error("❌ ERROR:", err);
+        res.status(500).json({
+            message: "Mail Failed",
+            error: err.message
+        });
     }
 });
 
