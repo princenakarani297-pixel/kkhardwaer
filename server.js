@@ -59,32 +59,33 @@ app.post("/send", async (req, res) => {
         `;
 
         // ===== EMAIL CONFIG =====
-       let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+        
+      app.get("/test", async (req,res)=>{
+
+try{
+
+let transporter = nodemailer.createTransport({
+    service: "gmail",
     auth: {
         user: "kkhardware2309@gmail.com",
         pass: "hvli hrwm yhsb hrjv"
     }
 });
 
-        // ===== SEND MAIL =====
-        const info = await transporter.sendMail({
-    from: "kkhardware2309@gmail.com",
-    to: "kkhardware2309@gmail.com",
-    subject: "🆕 New Inquiry - KK Hardware",
-    html: html
-});
+await transporter.sendMail({
+from:"kkhardware2309@gmail.com",
+to:"kkhardware2309@gmail.com",
+subject:"Test Mail",
+text:"Server Working"
+})
 
-console.log("Mail Sent:", info.response);
+res.send("✅ Mail Sent")
 
-        res.json({ message: "✅ Success" });
+}catch(err){
+console.log(err)
+res.send("❌ Mail Error")
+}
 
-    } catch (err) {
-        console.log("❌ ERROR:", err);
-        res.status(500).json({ message: "Error", error: err.message });
-    }
 });
 
 // ================= START SERVER =================
