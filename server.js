@@ -61,30 +61,33 @@ app.post("/send", async (req, res) => {
         // ===== EMAIL CONFIG =====
         
     
-try{
-
-let transporter = nodemailer.createTransport({
+            let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
         user: "kkhardware2309@gmail.com",
         pass: "hvli hrwm yhsb hrjv"
     }
+           tls: {
+        rejectUnauthorized: false
+    }
 });
 
-await transporter.sendMail({
-from:"kkhardware2309@gmail.com",
-to:"kkhardware2309@gmail.com",
-subject:"Test Mail",
-text:"Server Working"
-})
+        // ===== SEND MAIL =====
+        const info = await transporter.sendMail({
+    from: "kkhardware2309@gmail.com",
+    to: "kkhardware2309@gmail.com",
+    subject: "🆕 New Inquiry - KK Hardware",
+    html: html
+});
 
-res.send("✅ Mail Sent")
+console.log("Mail Sent:", info.response);
 
-}catch(err){
-console.log(err)
-res.send("❌ Mail Error")
-}
+        res.json({ message: "✅ Success" });
 
+    } catch (err) {
+        console.log("❌ ERROR:", err);
+        res.status(500).json({ message: "Error", error: err.message });
+    }
 });
 
 // ================= START SERVER =================
