@@ -46,7 +46,7 @@ app.post("/send", async (req, res) => {
 
         // ===== EMAIL CONFIG (FIXED) =====
         let transporter = nodemailer.createTransport({
-            service: "SendGrid"; // 🔥 important
+            service: "SendGrid"; // 🔥 importa
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
