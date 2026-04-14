@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>EK Hardware &amp; Interior | The Architectural Monolith</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&amp;family=Noto+Serif:ital,wght@0,400;1,400&amp;family=Inter:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-highest": "#e5e2e1",
+                        "primary-container": "#8b704b",
+                        "on-tertiary-fixed": "#1b1c1a",
+                        "on-tertiary-container": "#fefcf9",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-fixed-variant": "#474745",
+                        "primary-fixed-dim": "#e2c197",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#313030",
+                        "on-surface-variant": "#4e453c",
+                        "surface": "#fcf9f8",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#ffddb2",
+                        "secondary-container": "#e4e2e1",
+                        "on-secondary-container": "#656464",
+                        "secondary-fixed": "#e4e2e1",
+                        "tertiary": "#5c5c5a",
+                        "inverse-primary": "#e2c197",
+                        "on-primary-fixed-variant": "#594322",
+                        "on-error": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "outline-variant": "#d1c4b8",
+                        "primary": "#705835",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "tertiary-fixed": "#e4e2df",
+                        "secondary": "#5f5e5e",
+                        "outline": "#7f756a",
+                        "on-secondary-fixed-variant": "#474747",
+                        "background": "#fcf9f8",
+                        "surface-container-low": "#f6f3f2",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f0eded",
+                        "surface-container-high": "#eae7e7",
+                        "surface-dim": "#dcd9d9",
+                        "surface-tint": "#735a37",
+                        "on-primary-fixed": "#291800",
+                        "tertiary-fixed-dim": "#c8c6c4",
+                        "surface-bright": "#fcf9f8",
+                        "tertiary-container": "#757472",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Epilogue"],
+                        "body": ["Noto Serif"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .bg-glass {
+            backdrop-filter: blur(24px);
+        }
+
+        .cta-gradient {
+            background: linear-gradient(135deg, #705835 0%, #8b704b 100%);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-scroll {
+            animation: scroll 40s linear infinite;
+        }
+
+        .animate-scroll:hover {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-on-surface font-body selection:bg-primary-fixed-dim selection:text-on-primary-fixed antialiased overflow-x-hidden">
+    <!-- TopNavBar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-stone-50/80 dark:bg-stone-950/80 backdrop-blur-xl border-b border-stone-200/20 dark:border-stone-800/20 transition-all duration-300">
+        <div class="flex justify-between items-center px-6 md:px-12 h-20 w-full max-w-[2560px] mx-auto relative">
+            <div
+                class="font-['Epilogue'] font-black text-2xl sm:text-3xl tracking-tighter text-stone-900 dark:text-stone-50">
+
+                KK HARDWEAR
+
+            </div>
+            <div
+                class="hidden lg:flex items-center justify-center gap-6 xl:gap-10 font-['Epilogue'] uppercase tracking-widest text-xs xl:text-sm absolute left-1/2 -translate-x-1/2">
+                <a class="relative group text-stone-500 hover:text-[#705835] dark:text-stone-400 dark:hover:text-[#e2c197] transition-colors duration-300"
+                    href="#">
+                    Home
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#705835] dark:bg-[#e2c197] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a class="relative group text-stone-500 hover:text-[#705835] dark:text-stone-400 dark:hover:text-[#e2c197] transition-colors duration-300"
+                    href="#products">
+                    Products
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#705835] dark:bg-[#e2c197] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a class="relative group text-stone-500 hover:text-[#705835] dark:text-stone-400 dark:hover:text-[#e2c197] transition-colors duration-300"
+                    href="#showcase">
+                    Showcase
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#705835] dark:bg-[#e2c197] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a class="relative group text-stone-500 hover:text-[#705835] dark:text-stone-400 dark:hover:text-[#e2c197] transition-colors duration-300"
+                    href="#location">
+                    Location
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#705835] dark:bg-[#e2c197] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a class="relative group text-stone-500 hover:text-[#705835] dark:text-stone-400 dark:hover:text-[#e2c197] transition-colors duration-300"
+                    href="#contact">
+                    Contact
+                    <span
+                        class="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#705835] dark:bg-[#e2c197] transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn"
+                class="lg:hidden flex flex-col gap-1.5 focus:outline-none p-2 relative z-50 mt-1">
+                <span class="w-6 h-0.5 bg-stone-900 dark:bg-stone-50 transition-all duration-300 block"></span>
+                <span class="w-6 h-0.5 bg-stone-900 dark:bg-stone-50 transition-all duration-300 block"></span>
+                <span class="w-6 h-0.5 bg-stone-900 dark:bg-stone-50 transition-all duration-300 block"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-stone-50 dark:bg-stone-950 z-40 transform translate-x-full transition-transform duration-500 ease-in-out lg:hidden flex flex-col items-center justify-center space-y-8">
+        <a class="mobile-link font-['Epilogue'] uppercase tracking-widest text-2xl text-stone-900 dark:text-stone-50 hover:text-[#705835] dark:hover:text-[#e2c197] transition-colors"
+            href="#">Home</a>
+        <a class="mobile-link font-['Epilogue'] uppercase tracking-widest text-2xl text-stone-900 dark:text-stone-50 hover:text-[#705835] dark:hover:text-[#e2c197] transition-colors"
+            href="#products">Products</a>
+        <a class="mobile-link font-['Epilogue'] uppercase tracking-widest text-2xl text-stone-900 dark:text-stone-50 hover:text-[#705835] dark:hover:text-[#e2c197] transition-colors"
+            href="#showcase">Showcase</a>
+        <a class="mobile-link font-['Epilogue'] uppercase tracking-widest text-2xl text-stone-900 dark:text-stone-50 hover:text-[#705835] dark:hover:text-[#e2c197] transition-colors"
+            href="#location">Location</a>
+        <a class="mobile-link font-['Epilogue'] uppercase tracking-widest text-2xl text-stone-900 dark:text-stone-50 hover:text-[#705835] dark:hover:text-[#e2c197] transition-colors"
+            href="#contact">Contact</a>
+    </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img alt="Architectural interior" class="w-full h-full object-cover"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKT5kwdTZCCxFoMRfvtBgvxqZXHNErAJ66MpxiuQo268liUWGf4L4IX-MSBorviBOst5k8zqKFYtT__TX1PplnmE2DVfOh-fy5_8HoabGJwT3QYHB4JNmRnFEDEa7S4KB4lOuO-o7zmV2UIWeUvaRhpYMLRjq_P7nl0ZDAxb_tvLmoh5DMPx254wwgAehUCv54YRnfx4XnNUihm0beZVyTJ6dHQgdy6rLp04beNKsDhSokM5bjXKv1I8GdphWk5uDPIjZLdhn0Bas" />
+                <div class="absolute inset-0 bg-on-surface/30"></div>
+            </div>
+            <div class="relative z-10 px-6 md:px-12 max-w-7xl mx-auto w-full">
+                <div class="max-w-4xl">
+                    <span class="font-label text-sm uppercase tracking-[0.3em] text-surface mb-6 block">KK HARDWARE
+                        &amp; INTERIOR</span>
+                    <h1
+                        class="font-headline text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-black tracking-tighter text-surface leading-[0.9] mb-8">
+                        ARCHITECTURAL <br /> MONOLITH
+                    </h1>
+                    <p class="font-body italic text-xl md:text-2xl text-surface/90 max-w-2xl mb-12 leading-relaxed">
+                        Precision-engineered hardware and bespoke interior narratives for the modern visionary.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a class="cta-gradient text-on-primary font-headline font-bold uppercase tracking-widest px-10 py-5 text-sm hover:opacity-90 active:scale-95 transition-all text-center"
+                            href="#products">
+                            View Collections
+                        </a>
+                        <a class="border border-surface/30 text-surface backdrop-blur-md font-headline font-bold uppercase tracking-widest px-10 py-5 text-sm hover:bg-surface hover:text-on-surface active:scale-95 transition-all text-center"
+                            href="tel:+917567605638">
+                            Call Consultant
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Collection Showcase (Auto-playing Slider) -->
+        <section class="py-24 bg-surface-container-lowest overflow-hidden" id="showcase">
+            <div class="px-6 md:px-12 mb-16 text-center max-w-3xl mx-auto">
+                <h2 class="font-headline text-4xl md:text-6xl font-black tracking-tighter uppercase mb-6">Collection
+                    Showcase</h2>
+                <div class="w-16 h-1 bg-primary mx-auto"></div>
+            </div>
+            <div class="relative flex">
+                <div class="flex gap-6 animate-scroll whitespace-nowrap px-6">
+                    <!-- Slide 1 -->
+                    <div
+                        class="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[450px] aspect-[4/5] bg-stone-200 overflow-hidden group">
+                        <img alt="Premium Bronze Handle"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmkFAxlF-EKLA71DOSYdG2GemBSbi5n7z6uTKr9zab3vr1L0-QN4L4n7l0EnRuwTo-sKBdcx_ilhV9LScp0TJIdT0jN5UuUVh6Ev_kPoG42dcYb8XXW48hJ_nd-J6BMJYyUTCs-_22BeAtjPge6mgVSox8f979aMISkg996cwYYWbiCIWtfVhO5RVFbw1uIgq0_hsoi6PejOemeCcPU9IXdzG_t5r9vvzeeVAsa6ymvG7OGkHoKguJtO3id0J375jE5x3YRnLTNPw" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <p class="font-headline font-bold text-2xl text-white uppercase tracking-tighter">The
+                                Knurled Bronze</p>
+                            <p class="font-label text-xs text-stone-300 uppercase tracking-widest mt-2">Industrial
+                                Series 01</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div
+                        class="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[450px] aspect-[4/5] bg-stone-200 overflow-hidden group">
+                        <img alt="Structural Hinge"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN2HNbPnoWx4iRs2UUP-eR1MA7AcmLAjq05eczupIXnoEABrAWM8uGskdNGh77249Kd6AHeD-Wm0TCfCF3OYXbYkeQh5itZE6-IwPTZOjP4N5Souhh_s634eB0ICHqctfkE3T8RAI01TiMzflYfmh6Ne6ceuJyP6qYNcBVT_tdxeSU2c0mdXDEQHlb9yMAz9G68WkbiqJ_B2fDJzzsuZ_2WLTtTEn6NytFpQhM9g4adkGs316G1vC81S744mmqFAZxnFiu3C5ZCfg" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <p class="font-headline font-bold text-2xl text-white uppercase tracking-tighter">Gravity
+                                Pivots</p>
+                            <p class="font-label text-xs text-stone-300 uppercase tracking-widest mt-2">Structural
+                                Performance</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div
+                        class="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[450px] aspect-[4/5] bg-stone-200 overflow-hidden group">
+                        <img alt="Brass Pulls"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYSZgzqGOzNPHKvqzMqzsbjDXB2kyeMYWMUCPnqwHbTeAFDEIQBNokeHhfth6hV03zdHqjUN6NOhtJ5Pu8bvN42D2PU3ZE07Ul_KF8gMjHvPfRi163D46nCDJZnbs_THJDjjqRtw-HzacbxYF3zOfCGE1Zd932vNTyUTFS7zUU1FaBPHKkqkqpgmewwIHj5ulDgUT0z-bZx5fLvX62CDVTAqrGVi11X-eEjw0GFtIiwa0nothRyxUKNXoojnf6AgeSCxa9Fw8eqvw" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <p class="font-headline font-bold text-2xl text-white uppercase tracking-tighter">Satin Bar
+                                Pulls</p>
+                            <p class="font-label text-xs text-stone-300 uppercase tracking-widest mt-2">Minimalist
+                                Luxury</p>
+                        </div>
+                    </div>
+                    <!-- Repeat for Loop -->
+                    <div
+                        class="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[450px] aspect-[4/5] bg-stone-200 overflow-hidden group">
+                        <img alt="Matte Black Lever"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSDexdTcBph2QP0cqD0UuOks1eAHWTpZlbyBCmiwVLmqjgsXMm3S_oLaJSVa50b_7OtsheHv5ZeOCRvF_gBmK97Y8dZnzI43dcEZIs69bm_G3ATdYe_VRVZhAJhEGoOUeR7UNlndbMN4nF6wTXTFA9j5K_yfRoMbVBu_YQIev2Yn-7QbuyUvAqvrxG936YCMTfUrtIjepCW6tCQGiY834GZs6pYeQucuTEdizJG1NkEaxFgdJtfvIfkFaLOKnfTkxGqOWfekvEVrU" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <p class="font-headline font-bold text-2xl text-white uppercase tracking-tighter">Monolith
+                                Matte</p>
+                            <p class="font-label text-xs text-stone-300 uppercase tracking-widest mt-2">Atelier Series
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Duplicate Set for continuous loop -->
+                    <div
+                        class="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[450px] aspect-[4/5] bg-stone-200 overflow-hidden group">
+                        <img alt="Premium Bronze Handle"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmkFAxlF-EKLA71DOSYdG2GemBSbi5n7z6uTKr9zab3vr1L0-QN4L4n7l0EnRuwTo-sKBdcx_ilhV9LScp0TJIdT0jN5UuUVh6Ev_kPoG42dcYb8XXW48hJ_nd-J6BMJYyUTCs-_22BeAtjPge6mgVSox8f979aMISkg996cwYYWbiCIWtfVhO5RVFbw1uIgq0_hsoi6PejOemeCcPU9IXdzG_t5r9vvzeeVAsa6ymvG7OGkHoKguJtO3id0J375jE5x3YRnLTNPw" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                            <p class="font-headline font-bold text-2xl text-white uppercase tracking-tighter">The
+                                Knurled Bronze</p>
+                        </div>
+                    </div>
+                    <div
+                        class="relative flex-shrink-0 w-[280px] sm:w-[320px] md:w-[450px] aspect-[4/5] bg-stone-200 overflow-hidden group">
+                        <img alt="Structural Hinge"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN2HNbPnoWx4iRs2UUP-eR1MA7AcmLAjq05eczupIXnoEABrAWM8uGskdNGh77249Kd6AHeD-Wm0TCfCF3OYXbYkeQh5itZE6-IwPTZOjP4N5Souhh_s634eB0ICHqctfkE3T8RAI01TiMzflYfmh6Ne6ceuJyP6qYNcBVT_tdxeSU2c0mdXDEQHlb9yMAz9G68WkbiqJ_B2fDJzzsuZ_2WLTtTEn6NytFpQhM9g4adkGs316G1vC81S744mmqFAZxnFiu3C5ZCfg" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Narrative Section -->
+        <section class="py-32 px-6 md:px-12 bg-surface">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div class="relative">
+                    <img alt="Bronze lever handle" class="w-full aspect-[4/5] object-cover shadow-2xl"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmkFAxlF-EKLA71DOSYdG2GemBSbi5n7z6uTKr9zab3vr1L0-QN4L4n7l0EnRuwTo-sKBdcx_ilhV9LScp0TJIdT0jN5UuUVh6Ev_kPoG42dcYb8XXW48hJ_nd-J6BMJYyUTCs-_22BeAtjPge6mgVSox8f979aMISkg996cwYYWbiCIWtfVhO5RVFbw1uIgq0_hsoi6PejOemeCcPU9IXdzG_t5r9vvzeeVAsa6ymvG7OGkHoKguJtO3id0J375jE5x3YRnLTNPw" />
+                    <div class="absolute -bottom-12 -right-12 w-64 h-64 bg-surface-container hidden lg:block -z-10">
+                    </div>
+                </div>
+                <div>
+                    <h2
+                        class="font-headline text-4xl lg:text-5xl font-black tracking-tighter mb-8 text-on-surface uppercase leading-tight">
+                        The Material <br /> Philosophy</h2>
+                    <p class="font-body text-lg text-on-surface-variant leading-relaxed mb-6">
+                        We believe that the smallest touchpoint is the most critical. A door handle is not just a tool;
+                        it is the first physical handshake between a human and a space.
+                    </p>
+                    <p
+                        class="font-body text-lg text-on-surface-variant leading-relaxed italic border-l-4 border-primary pl-6 py-2">
+                        Our collections are curated for those who understand that luxury is felt in the weight of the
+                        metal and the silence of the mechanism.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Product Showcase (Bento Grid) -->
+        <section class="py-32 bg-surface-container-low" id="products">
+            <div class="px-6 md:px-12 max-w-[1920px] mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                    <h2
+                        class="font-headline text-4xl sm:text-5xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.85] mb-4 md:mb-0">
+                        Curated <br class="hidden sm:block" /> Hardware</h2>
+                    <div class="max-w-md">
+                        <p class="font-body text-on-surface-variant">A selection of our core architectural elements.
+                            Visit the showroom for the full tactile experience.</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[1200px]">
+                    <!-- Large Feature -->
+                    <div class="md:col-span-8 group relative overflow-hidden bg-surface">
+                        <img alt="Modern hardware"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSDexdTcBph2QP0cqD0UuOks1eAHWTpZlbyBCmiwVLmqjgsXMm3S_oLaJSVa50b_7OtsheHv5ZeOCRvF_gBmK97Y8dZnzI43dcEZIs69bm_G3ATdYe_VRVZhAJhEGoOUeR7UNlndbMN4nF6wTXTFA9j5K_yfRoMbVBu_YQIev2Yn-7QbuyUvAqvrxG936YCMTfUrtIjepCW6tCQGiY834GZs6pYeQucuTEdizJG1NkEaxFgdJtfvIfkFaLOKnfTkxGqOWfekvEVrU" />
+                        <div
+                            class="absolute bottom-0 left-0 right-0 p-8 lg:p-12 bg-gradient-to-t from-on-surface/80 to-transparent">
+                            <span class="font-label text-xs text-surface/80 uppercase tracking-widest mb-2 block">Series
+                                01</span>
+                            <h3 class="font-headline text-3xl text-surface font-bold uppercase">The Industrialist Lever
+                            </h3>
+                        </div>
+                    </div>
+                    <!-- Side Grid -->
+                    <div class="md:col-span-4 grid grid-rows-2 gap-6">
+                        <div class="group relative overflow-hidden bg-surface">
+                            <img alt="Brass pulls"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYSZgzqGOzNPHKvqzMqzsbjDXB2kyeMYWMUCPnqwHbTeAFDEIQBNokeHhfth6hV03zdHqjUN6NOhtJ5Pu8bvN42D2PU3ZE07Ul_KF8gMjHvPfRi163D46nCDJZnbs_THJDjjqRtw-HzacbxYF3zOfCGE1Zd932vNTyUTFS7zUU1FaBPHKkqkqpgmewwIHj5ulDgUT0z-bZx5fLvX62CDVTAqrGVi11X-eEjw0GFtIiwa0nothRyxUKNXoojnf6AgeSCxa9Fw8eqvw" />
+                            <div class="absolute top-6 left-6">
+                                <span
+                                    class="bg-surface/90 backdrop-blur px-4 py-2 font-label text-[10px] uppercase tracking-widest">Matte
+                                    Brass</span>
+                            </div>
+                        </div>
+                        <div class="group relative overflow-hidden bg-surface">
+                            <img alt="Interior view"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDPsT2xJJX0rKQl5YHcl42zbCTSQ8UXBqepBKoI-ns0-LIhCQd7_OI3FArQPQ9IVpPzblkIMVGryPXR5uaSDp4lq128YPN62rwX16xeDhsOcJFlN6gIMToHLuYL03qBnlXYjKR7O5zKtsqzxdDbwk-raY7xzNNQsXL9hAJRALu4YXGXbFVGaiCa40ju-GX4gEjN5vBf272fc1BTHdUuHbHCSA8e9yDM67goG1sbAd2Gn3b319hgVXbATTArJGRuUMPzBw4qALRSCE" />
+                            <div class="absolute bottom-6 right-6">
+                                <span
+                                    class="bg-surface/90 backdrop-blur px-4 py-2 font-label text-[10px] uppercase tracking-widest">Design
+                                    Work</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bottom Row -->
+                    <div class="md:col-span-4 group relative overflow-hidden bg-surface">
+                        <img alt="Chrome knob"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOecNYvC8OB4G9Mkj2n1sWLuZZAbwWWd-Nt_th0-9-m4XT454Sn45oKJ6sWT5hcOFvRnZsRZ69CQi7Lnv9E7ytOzP452b94huBoyOXEJo0Zxmb2xalqaSeWCbgzxRbOeefzjwWEV3E7x98lYjh6F7AYBL2qGrgJziNUkajcXSft57248kCCK1diHgNpYpEDbbtZZO0zFgJUoOMEtDiH5PNVTL7ok5InztitCB2zeDxM2KhWl0HgYjqim8SyNRnGTofKE1NPmaMu1Y" />
+                    </div>
+                    <div class="md:col-span-8 group relative overflow-hidden bg-surface">
+                        <img alt="Steel hinges"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN2HNbPnoWx4iRs2UUP-eR1MA7AcmLAjq05eczupIXnoEABrAWM8uGskdNGh77249Kd6AHeD-Wm0TCfCF3OYXbYkeQh5itZE6-IwPTZOjP4N5Souhh_s634eB0ICHqctfkE3T8RAI01TiMzflYfmh6Ne6ceuJyP6qYNcBVT_tdxeSU2c0mdXDEQHlb9yMAz9G68WkbiqJ_B2fDJzzsuZ_2WLTtTEn6NytFpQhM9g4adkGs316G1vC81S744mmqFAZxnFiu3C5ZCfg" />
+                        <div
+                            class="absolute inset-0 flex items-center justify-center bg-on-surface/40 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <p class="font-body italic text-surface text-2xl tracking-widest uppercase">Structural
+                                Integrity</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Call Now Section -->
+        <section class="py-32 bg-on-surface text-surface overflow-hidden relative">
+            <div class="absolute top-0 right-0 opacity-5 pointer-events-none">
+                <span class="font-headline text-[30rem] font-black leading-none select-none tracking-tighter">EK</span>
+            </div>
+            <div class="px-6 md:px-12 max-w-7xl mx-auto relative z-10 flex flex-col items-center text-center">
+                <h2
+                    class="font-headline text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-12 uppercase italic leading-none">
+                    Speak with our Architects</h2>
+                <a class="group flex flex-col items-center hover:opacity-80 transition-all active:scale-95"
+                    href="tel:+917567605638">
+                    <span
+                        class="font-label text-sm uppercase tracking-[0.5em] text-primary-fixed-dim mb-4 group-hover:text-primary transition-colors">DIRECT
+                        DIAL</span>
+                    <span
+                        class="font-headline text-2xl sm:text-5xl md:text-7xl lg:text-9xl font-black tracking-tighter group-hover:text-primary-fixed-dim transition-colors">+91
+                        7567605638</span>
+                </a>
+                <div class="mt-16 w-12 h-[2px] bg-primary-fixed-dim"></div>
+            </div>
+        </section>
+        <!-- Location & Visit -->
+        <section class="py-32 bg-surface" id="location">
+            <div class="px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2
+                        class="font-headline text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter uppercase mb-8 leading-none">
+                        The <br /> Showroom</h2>
+                    <p class="font-body text-xl text-on-surface-variant mb-12 leading-relaxed">
+                        Experience the weight, the texture, and the mechanism in person. Our industrial atelier is
+                        located in the heart of the design district.
+                    </p>
+                    <div class="space-y-10">
+                        <div class="flex gap-6">
+                            <span class="material-symbols-outlined text-primary text-3xl"
+                                data-icon="location_on">location_on</span>
+                            <div>
+                                <h4 class="font-headline font-bold uppercase text-xs tracking-[0.2em] mb-2 opacity-60">
+                                    Address</h4>
+                                <a class="font-body text-lg text-on-surface-variant hover:text-primary transition-colors active:opacity-70"
+                                    href="https://maps.app.goo.gl/3fR9yM7sE2Zk1w8M8" target="_blank">
+                                    G-6, Flora Iris, South Bopal,<br />Ahmedabad-380058, Gujrat, India
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <span class="material-symbols-outlined text-primary text-3xl"
+                                data-icon="schedule">schedule</span>
+                            <div>
+                                <h4 class="font-headline font-bold uppercase text-xs tracking-[0.2em] mb-2 opacity-60">
+                                    Consultation Hours</h4>
+                                <p class="font-body text-lg text-on-surface-variant">Mon — Sat: 09:00 AM - 8:00
+                                    PM<br />Sat: By Appointment Only</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="h-[350px] sm:h-[450px] md:h-[600px] bg-stone-100 relative block group/map overflow-hidden rounded-sm mt-8 md:mt-0"
+                    href="https://maps.app.goo.gl/obspEoc2rLH2Jgqk6" target="_blank">
+                    <img alt="Map"
+                        class="w-full h-full object-cover grayscale transition-transform duration-1000 group-hover/map:scale-110"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM6lQ-XLty1wYiUA-hyGDp1pSYKIWAvfyLw_mhvOGGKaqz6L6Bo-N-EDmS3fFIoeS2WCAotZaHdR2Lw1DSww1cEOzFM8EuqsuLt3PhiGfQml8f4-nyUQgxD8mWf2WvOoEkXLJ3P7xlYg2JCXGiUB2PL_K1USWPQGqWO8sHrhEoBXF0ExVSp58NEwGf4LgkalJsDLDnsgczDl43A1ZOJK1uxYxpX1Ihj3ATm-SZXeL8GbjrvDntKN6AHM2p4fVN4yceMPgcOpDQJuk" />
+                    <div
+                        class="absolute inset-0 bg-primary/10 mix-blend-multiply transition-opacity duration-500 group-hover/map:opacity-50">
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div
+                            class="w-20 h-20 bg-primary rounded-full flex items-center justify-center shadow-2xl animate-pulse group-hover/map:scale-110 transition-transform duration-500">
+                            <span class="material-symbols-outlined text-surface text-3xl"
+                                data-icon="push_pin">push_pin</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+        <!-- Professional Contact Section / Footer Area -->
+        <section
+            class="bg-stone-100 dark:bg-stone-900 py-32 px-6 md:px-12 border-t border-stone-200 dark:border-stone-800"
+            id="contact">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
+                    <div class="flex flex-col">
+                        <h2
+                            class="font-headline text-4xl lg:text-5xl font-black tracking-tighter uppercase mb-8 leading-tight">
+                            Start a <br /> Specification</h2>
+                        <p
+                            class="font-body text-stone-600 dark:text-stone-400 text-lg leading-relaxed mb-12 max-w-md italic">
+                            Provide your project requirements and a specialist from our design studio will connect with
+                            you via Gmail to discuss technical specifications.
+                        </p>
+                        <form class="space-y-6">
+                            <div class="group">
+                                <label
+                                    class="block font-label text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-2 group-focus-within:text-primary transition-colors">Full
+                                    Name</label>
+                                <input
+                                    class="w-full bg-white/50 dark:bg-black/20 border-stone-200 dark:border-stone-800 border-x-0 border-t-0 border-b-2 py-4 focus:ring-0 focus:border-primary transition-all font-body text-on-surface placeholder:text-stone-300 dark:placeholder:text-stone-700"
+                                    placeholder="e.g. Alexander Vance" required="" type="text" />
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="group">
+                                    <label
+                                        class="block font-label text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-2 group-focus-within:text-primary transition-colors">Gmail
+                                        Address</label>
+                                    <input
+                                        class="w-full bg-white/50 dark:bg-black/20 border-stone-200 dark:border-stone-800 border-x-0 border-t-0 border-b-2 py-4 focus:ring-0 focus:border-primary transition-all font-body text-on-surface placeholder:text-stone-300 dark:placeholder:text-stone-700"
+                                        placeholder="name@gmail.com" required="" type="email" />
+                                </div>
+                                <div class="group">
+                                    <label
+                                        class="block font-label text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-2 group-focus-within:text-primary transition-colors">Contact
+                                        Number</label>
+                                    <input
+                                        class="w-full bg-white/50 dark:bg-black/20 border-stone-200 dark:border-stone-800 border-x-0 border-t-0 border-b-2 py-4 focus:ring-0 focus:border-primary transition-all font-body text-on-surface placeholder:text-stone-300 dark:placeholder:text-stone-700"
+                                        placeholder="+91 0000000000" required="" type="tel" />
+                                </div>
+                            </div>
+                            <div class="group">
+                                <label
+                                    class="block font-label text-[10px] uppercase tracking-[0.2em] text-stone-500 mb-2 group-focus-within:text-primary transition-colors">Project
+                                    Brief</label>
+                                <textarea
+                                    class="w-full bg-white/50 dark:bg-black/20 border-stone-200 dark:border-stone-800 border-x-0 border-t-0 border-b-2 py-4 focus:ring-0 focus:border-primary transition-all font-body text-on-surface placeholder:text-stone-300 dark:placeholder:text-stone-700 resize-none"
+                                    placeholder="Describe the architectural scale and desired finishes..."
+                                    rows="4"></textarea>
+                            </div>
+                            <button
+                                class="cta-gradient text-on-primary font-headline font-bold uppercase tracking-[0.3em] w-full py-6 mt-8 transition-all hover:shadow-2xl active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                                type="submit">
+                                Initialize Inquiry
+                            </button>
+                        </form>
+                    </div>
+                    <div class="flex flex-col justify-between">
+                        <div class="grid grid-cols-2 gap-12">
+                            <div>
+                                <h4
+                                    class="font-headline font-bold uppercase text-[10px] tracking-[0.3em] text-primary mb-8">
+                                    Navigation</h4>
+                                <ul class="space-y-6">
+                                    <li><a class="font-body text-stone-600 dark:text-stone-400 hover:text-primary transition-colors uppercase tracking-widest text-xs"
+                                            href="#">Home</a></li>
+                                    <li><a class="font-body text-stone-600 dark:text-stone-400 hover:text-primary transition-colors uppercase tracking-widest text-xs"
+                                            href="">Catalogues</a></li>
+                                    <li><a class="font-body text-stone-600 dark:text-stone-400 hover:text-primary transition-colors uppercase tracking-widest text-xs"
+                                            href="">Finishes</a></li>
+                                    <li><a class="font-body text-stone-600 dark:text-stone-400 hover:text-primary transition-colors uppercase tracking-widest text-xs"
+                                            href="">Our Process</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4
+                                    class="font-headline font-bold uppercase text-[10px] tracking-[0.3em] text-primary mb-8">
+                                    Social Ecosystem</h4>
+                                <ul class="space-y-6">
+                                    <li><a class="font-body text-stone-600 dark:text-stone-400 hover:text-primary transition-colors uppercase tracking-widest text-xs"
+                                            href="https://www.instagram.com/kk_hardware_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-24">
+                            <div
+                                class="font-headline text-3xl font-black tracking-widest text-stone-900 dark:text-stone-100 mb-8 uppercase leading-none">
+                                THE ARCHITECTURAL <br /> MONOLITH
+                            </div>
+                            <div
+                                class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-t border-stone-200 dark:border-stone-800 pt-8">
+                                <p class="font-label text-[10px] uppercase tracking-[0.2em] text-stone-500">
+                                    © 2024 KK HARDWARE &amp; INTERIOR.
+                                </p>
+                                <p class="font-label text-[10px] uppercase tracking-[0.2em] text-stone-500">
+                                    CRAFTED FOR THE PRINCE NAKRANI.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer
+        class="bg-stone-100 dark:bg-stone-900 w-full pt-16 pb-12 px-6 md:px-12 border-t border-stone-200 dark:border-stone-800">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-[2560px] mx-auto">
+            <div class="flex flex-col gap-6">
+                <span class="font-['Epilogue'] font-black text-2xl text-stone-900 dark:text-stone-50">THE INDUSTRIAL
+                    ATELIER</span>
+                <p
+                    class="font-['Noto_Serif'] italic text-base leading-relaxed text-[#705835] dark:text-[#e2c197] max-w-md">
+                    Crafting the tactile boundaries of modern architecture. Precision is not an option; it is our
+                    foundation.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-8">
+                <div class="flex flex-col gap-4">
+                    <span
+                        class="font-['Epilogue'] text-xs font-bold uppercase tracking-widest text-stone-500">Resources</span>
+                    <div class="flex flex-col gap-3">
+                        <a class="font-['Noto_Serif'] italic text-sm text-stone-600 dark:text-stone-400 hover:text-[#705835] transition-all underline underline-offset-4"
+                            href="">Privacy Policy</a>
+                        <a class="font-['Noto_Serif'] italic text-sm text-stone-600 dark:text-stone-400 hover:text-[#705835] transition-all"
+                            href="">Terms of Service</a>
+                        <a class="font-['Noto_Serif'] italic text-sm text-stone-600 dark:text-stone-400 hover:text-[#705835] transition-all"
+                            href="">Shipping &amp; Returns</a>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <span
+                        class="font-['Epilogue'] text-xs font-bold uppercase tracking-widest text-stone-500">Connect</span>
+                    <div class="flex flex-col gap-3">
+                        <a class="font-['Noto_Serif'] italic text-sm text-stone-600 dark:text-stone-400 hover:text-[#705835] transition-all"
+                            href="https://www.instagram.com/kk_hardware_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">Instagram</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[2560px] mx-auto mt-20 text-center border-t border-stone-200 dark:border-stone-800 pt-8">
+            <p class="font-['Inter'] text-[10px] tracking-widest text-stone-500 opacity-70 uppercase">© 2024 THE
+                INDUSTRIAL ATELIER. ARCHITECTURAL RIGOR.</p>
+        </div>
+    </footer>
+
+    <!-- yaha pe lagana hai 👇 -->
+    <div id="successMessage" style="
+position: fixed;
+top: 20px;
+right: 20px;
+background: #705835;
+color: white;
+padding: 16px 24px;
+border-radius: 8px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+font-family: sans-serif;
+font-size: 14px;
+display: none;
+z-index: 9999;
+transition: all 0.5s ease;
+">
+    </div>
+
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const form = document.querySelector("form");
+        const box = document.getElementById("successMessage");
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            let data = {};
+            const fields = form.querySelectorAll("input, textarea, select");
+
+            fields.forEach((field, index) => {
+                let value = field.value.trim();
+
+                if (!value) return;
+
+                // 🔥 CLEAN FIELD NAME LOGIC
+                let key = "";
+
+                if (field.type === "email") key = "Email";
+                else if (field.type === "tel") key = "Mobile No";
+                else if (field.tagName === "TEXTAREA") key = "Message";
+                else if (field.type === "text") key = "Name";
+                else key = field.name || ("Field_" + index);
+
+                data[key] = value;
+            });
+
+            console.log("FINAL CLEAN DATA:", data);
+
+            // ===== VALIDATION =====
+            if (!data["Name"]) {
+                show("❌ Name is required!", "red");
+                return;
+            }
+
+            if (!data["Email"] || !/^\S+@\S+\.\S+$/.test(data["Email"])) {
+                show("❌ Valid Email required!", "red");
+                return;
+            }
+
+            if (!data["Mobile No"] || !/^[0-9]{10}$/.test(data["Mobile No"])) {
+                show("❌ Valid Mobile Number required!", "red");
+                return;
+            }
+
+            if (!data["Message"]) {
+                show("❌ Message is required!", "red");
+                return;
+            }
+
+            try {
+                const res = await fetch("http://localhost:3001/send", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (res.ok) {
+                    show("✅ Form Submitted Successfully!", "#705835");
+                    form.reset();
+                } else {
+                    show("❌ Server Error!", "red");
+                }
+
+            } catch (err) {
+                show("❌ Cannot connect to server!", "red");
+            }
+        });
+
+        function show(msg, color) {
+            box.innerText = msg;
+            box.style.background = color;
+            box.style.display = "block";
+            box.style.opacity = "1";
+
+            setTimeout(() => box.style.opacity = "0", 2500);
+            setTimeout(() => box.style.display = "none", 3000);
+        }
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const spans = mobileMenuBtn?.querySelectorAll('span');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('translate-x-full');
+                document.body.classList.toggle('overflow-hidden');
+
+                if (spans && spans.length >= 3) {
+                    spans[0].classList.toggle('rotate-45');
+                    spans[0].classList.toggle('translate-y-2');
+                    spans[1].classList.toggle('opacity-0');
+                    spans[2].classList.toggle('-rotate-45');
+                    spans[2].classList.toggle('-translate-y-2');
+                }
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('translate-x-full');
+                    document.body.classList.remove('overflow-hidden');
+
+                    if (spans && spans.length >= 3) {
+                        spans[0].classList.remove('rotate-45', 'translate-y-2');
+                        spans[1].classList.remove('opacity-0');
+                        spans[2].classList.remove('-rotate-45', '-translate-y-2');
+                    }
+                });
+            });
+        }
+
+    });
+</script>
+
+</html>
