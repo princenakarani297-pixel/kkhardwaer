@@ -3,7 +3,6 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 const cors = require("cors");
-require("dotenv").config(); // 🔐 ENV support
 
 // ================= APP =================
 const app = express();
@@ -23,21 +22,21 @@ app.post("/send", async (req, res) => {
 
         const data = req.body;
 
-        // ===== SAVE DATA IN FILE (SAFE) =====
-        try {
-            let existing = [];
+        // ===== SAVE DATA IN FILE =====
+        let existing = [];
 
-            if (fs.existsSync("data.json")) {
+        if (fs.existsSync("data.json")) {
+            try {
                 existing = JSON.parse(fs.readFileSync("data.json"));
+            } catch {
+                existing = [];
             }
-
-            data.date = new Date().toLocaleString();
-            existing.push(data);
-
-            fs.writeFileSync("data.json", JSON.stringify(existing, null, 2));
-        } catch (fileErr) {
-            console.log("⚠️ File Save Error:", fileErr.message);
         }
+
+        data.date = new Date().toLocaleString();
+        existing.push(data);
+
+        fs.writeFileSync("data.json", JSON.stringify(existing, null, 2));
 
         // ===== EMAIL HTML =====
         let rows = Object.keys(data).map(key => `
@@ -59,37 +58,32 @@ app.post("/send", async (req, res) => {
         </div>
         `;
 
-        // ===== EMAIL CONFIG (BEST PRACTICE) =====
+        // ===== EMAIL CONFIG =====
         let transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 587,
-            secure: false,
+            service: "gmail",
             auth: {
-                user: process.env.EMAIL_USER,   // 🔐 from .env
-                pass: process.env.EMAIL_PASS    // 🔐 from .env
+                user: "kkhardware2309@gmail.com",
+                pass: "ubcqdpxiilssqexm" // 👈 IMPORTANT
             }
         });
 
-        // ===== VERIFY CONNECTION =====
-        await transporter.verify();
-
         // ===== SEND MAIL =====
         await transporter.sendMail({
-            from: process.env.EMAIL_USER,
-            to: process.env.EMAIL_USER,
+            from: "kkhardware2309@gmail.com",
+            to: "kkhardware2309@gmail.com",
             subject: "🆕 New Inquiry - KK Hardware",
             html: html
         });
 
-        res.json({ message: "✅ Email Sent Successfully" });
+        res.json({ message: "✅ Success" });
 
     } catch (err) {
-        console.log("❌ FULL ERROR:", err);
+        console.log("❌ ERROR:", err);
         res.status(500).json({ message: "Error", error: err.message });
     }
 });
 
 // ================= START SERVER =================
-app.listen(3005, () => {
+app.listen(3001, () => {
     console.log("🚀 Server running at http://localhost:3001");
 });
