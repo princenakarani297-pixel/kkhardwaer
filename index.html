@@ -82,6 +82,127 @@
             },
         }
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const form = document.querySelector("form");
+        const box = document.getElementById("successMessage");
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            let data = {};
+            const fields = form.querySelectorAll("input, textarea, select");
+
+            fields.forEach((field, index) => {
+                let value = field.value.trim();
+
+                if (!value) return;
+
+                // 🔥 CLEAN FIELD NAME LOGIC
+                let key = "";
+
+                if (field.type === "email") key = "Email";
+                else if (field.type === "tel") key = "Mobile No";
+                else if (field.tagName === "TEXTAREA") key = "Message";
+                else if (field.type === "text") key = "Name";
+                else key = field.name || ("Field_" + index);
+
+                data[key] = value;
+            });
+
+            console.log("FINAL CLEAN DATA:", data);
+
+            // ===== VALIDATION =====
+            if (!data["Name"]) {
+                show("❌ Name is required!", "red");
+                return;
+            }
+
+            if (!data["Email"] || !/^\S+@\S+\.\S+$/.test(data["Email"])) {
+                show("❌ Valid Email required!", "red");
+                return;
+            }
+
+            if (!data["Mobile No"] || !/^[0-9]{10}$/.test(data["Mobile No"])) {
+                show("❌ Valid Mobile Number required!", "red");
+                return;
+            }
+
+            if (!data["Message"]) {
+                show("❌ Message is required!", "red");
+                return;
+            }
+
+            try {
+                console.log("🚀 Sending request...");
+                const res = await fetch("https://kkhardware.onrender.com/send", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+                console.log("✅ Response received:", res);
+
+                if (res.ok) {
+                    show("✅ Form Submitted Successfully!", "#705835");
+                    form.reset();
+                } else {
+                    show("❌ Server Error!", "red");
+                }
+
+            } catch (err) {
+                console.error("❌ FETCH ERROR:", err);
+                show("❌ Cannot connect to server!", "red");
+            }
+        });
+
+        function show(msg, color) {
+            box.innerText = msg;
+            box.style.background = color;
+            box.style.display = "block";
+            box.style.opacity = "1";
+
+            setTimeout(() => box.style.opacity = "0", 2500);
+            setTimeout(() => box.style.display = "none", 3000);
+        }
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const spans = mobileMenuBtn?.querySelectorAll('span');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('translate-x-full');
+                document.body.classList.toggle('overflow-hidden');
+
+                if (spans && spans.length >= 3) {
+                    spans[0].classList.toggle('rotate-45');
+                    spans[0].classList.toggle('translate-y-2');
+                    spans[1].classList.toggle('opacity-0');
+                    spans[2].classList.toggle('-rotate-45');
+                    spans[2].classList.toggle('-translate-y-2');
+                }
+            });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('translate-x-full');
+                    document.body.classList.remove('overflow-hidden');
+
+                    if (spans && spans.length >= 3) {
+                        spans[0].classList.remove('rotate-45', 'translate-y-2');
+                        spans[1].classList.remove('opacity-0');
+                        spans[2].classList.remove('-rotate-45', '-translate-y-2');
+                    }
+                });
+            });
+        }
+
+    });
+</script>
     <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -636,126 +757,6 @@ transition: all 0.5s ease;
     </div>
 
 </body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
 
-        const form = document.querySelector("form");
-        const box = document.getElementById("successMessage");
-
-        form.addEventListener("submit", async function (e) {
-            e.preventDefault();
-
-            let data = {};
-            const fields = form.querySelectorAll("input, textarea, select");
-
-            fields.forEach((field, index) => {
-                let value = field.value.trim();
-
-                if (!value) return;
-
-                // 🔥 CLEAN FIELD NAME LOGIC
-                let key = "";
-
-                if (field.type === "email") key = "Email";
-                else if (field.type === "tel") key = "Mobile No";
-                else if (field.tagName === "TEXTAREA") key = "Message";
-                else if (field.type === "text") key = "Name";
-                else key = field.name || ("Field_" + index);
-
-                data[key] = value;
-            });
-
-            console.log("FINAL CLEAN DATA:", data);
-
-            // ===== VALIDATION =====
-            if (!data["Name"]) {
-                show("❌ Name is required!", "red");
-                return;
-            }
-
-            if (!data["Email"] || !/^\S+@\S+\.\S+$/.test(data["Email"])) {
-                show("❌ Valid Email required!", "red");
-                return;
-            }
-
-            if (!data["Mobile No"] || !/^[0-9]{10}$/.test(data["Mobile No"])) {
-                show("❌ Valid Mobile Number required!", "red");
-                return;
-            }
-
-            if (!data["Message"]) {
-                show("❌ Message is required!", "red");
-                return;
-            }
-
-            try {
-                console.log("🚀 Sending request...");
-                const res = await fetch("https://kkhardware.onrender.com/send", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(data)
-                });
-                console.log("✅ Response received:", res);
-
-                if (res.ok) {
-                    show("✅ Form Submitted Successfully!", "#705835");
-                    form.reset();
-                } else {
-                    show("❌ Server Error!", "red");
-                }
-
-            } catch (err) {
-                console.error("❌ FETCH ERROR:", err);
-                show("❌ Cannot connect to server!", "red");
-            }
-        });
-
-        function show(msg, color) {
-            box.innerText = msg;
-            box.style.background = color;
-            box.style.display = "block";
-            box.style.opacity = "1";
-
-            setTimeout(() => box.style.opacity = "0", 2500);
-            setTimeout(() => box.style.display = "none", 3000);
-        }
-
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-        const spans = mobileMenuBtn?.querySelectorAll('span');
-
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('translate-x-full');
-                document.body.classList.toggle('overflow-hidden');
-
-                if (spans && spans.length >= 3) {
-                    spans[0].classList.toggle('rotate-45');
-                    spans[0].classList.toggle('translate-y-2');
-                    spans[1].classList.toggle('opacity-0');
-                    spans[2].classList.toggle('-rotate-45');
-                    spans[2].classList.toggle('-translate-y-2');
-                }
-            });
-
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('translate-x-full');
-                    document.body.classList.remove('overflow-hidden');
-
-                    if (spans && spans.length >= 3) {
-                        spans[0].classList.remove('rotate-45', 'translate-y-2');
-                        spans[1].classList.remove('opacity-0');
-                        spans[2].classList.remove('-rotate-45', '-translate-y-2');
-                    }
-                });
-            });
-        }
-
-    });
-</script>
 
 </html>
