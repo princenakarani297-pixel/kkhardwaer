@@ -689,6 +689,7 @@ transition: all 0.5s ease;
             }
 
             try {
+                console.log("🚀 Sending request...");
                 const res = await fetch("https://kkhardware.onrender.com/send", {
                     method: "POST",
                     headers: {
@@ -696,6 +697,7 @@ transition: all 0.5s ease;
                     },
                     body: JSON.stringify(data)
                 });
+                console.log("✅ Response received:", res);
 
                 if (res.ok) {
                     show("✅ Form Submitted Successfully!", "#705835");
@@ -705,6 +707,7 @@ transition: all 0.5s ease;
                 }
 
             } catch (err) {
+                console.error("❌ FETCH ERROR:", err);
                 show("❌ Cannot connect to server!", "red");
             }
         });
