@@ -59,13 +59,15 @@ app.post("/send", async (req, res) => {
         `;
 
         // ===== EMAIL CONFIG =====
-        let transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: "kkhardware2309@gmail.com",
-                pass: "hvli hrwm yhsb hrjv" // 👈 IMPORTANT
-            }
-        });
+       let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+        user: "kkhardware2309@gmail.com",
+        pass: "hvli hrwm yhsb hrjv"
+    }
+});
 
         // ===== SEND MAIL =====
         await transporter.sendMail({
