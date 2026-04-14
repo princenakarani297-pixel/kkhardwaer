@@ -67,7 +67,7 @@ app.post("/send", async (req, res) => {
             html: html
         });
 
-        console.log("✅ Mail Sent Successfully",info);
+        console.log("✅ Mail Sent Successfully",info.response);
 
         res.json({ message: "✅ Success" });
 
