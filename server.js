@@ -63,7 +63,7 @@ app.post("/send", async (req, res) => {
             service: "gmail",
             auth: {
                 user: "kkhardware2309@gmail.com",
-                pass: "ubcqdpxiilssqexm" // 👈 IMPORTANT
+                pass: "ubcqdpxiilssqrxm" // 👈 IMPORTANT
             }
         });
 
