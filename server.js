@@ -65,7 +65,7 @@ app.post("/send", async (req, res) => {
             secure: true, 
             auth: { 
                 user: "kkhardware2309@gmail.com", 
-                pass: "hvli hrwm yhsb hrjv" } 
+                pass: "ubcq dpxi ilss qrxm" } 
         }); 
         // ===== SEND MAIL ===== 
         const info = await transporter.sendMail({
