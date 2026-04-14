@@ -61,11 +61,11 @@ app.post("/send", async (req, res) => {
         // ===== EMAIL CONFIG =====
         let transporter = nodemailer.createTransport({
             host: "smtp.gmail.com", 
-            port: 465, 
-            secure: true, 
+            port: 587, 
+            secure: false, 
             auth: { 
-                user: "kkhardware2309@gmail.com", 
-                pass: "ubcq dpxi ilss qrxm" } 
+                user: process.env.EMAIL_USER,   // 🔐 from .env
+                pass: process.env.EMAIL_PASS } 
         }); 
         // ===== SEND MAIL ===== 
         const info = await transporter.sendMail({
