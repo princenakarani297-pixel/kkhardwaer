@@ -46,9 +46,7 @@ app.post("/send", async (req, res) => {
 
         // ===== EMAIL CONFIG (FIXED) =====
         let transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 465,
-            secure: true, // 🔥 important
+            service: "SendGrid"; // 🔥 important
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
