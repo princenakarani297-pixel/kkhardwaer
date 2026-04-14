@@ -74,6 +74,7 @@ app.post("/send", async (req, res) => {
             subject: "🆕 New Inquiry - KK Hardware", 
             html: html
         });
+        console.log("✅ Mail sent successfully");
         console.log("Mail Sent:", info.response);
         res.json({ message: "✅ Success" }); } 
     catch (err) 
