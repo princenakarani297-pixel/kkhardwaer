@@ -59,37 +59,33 @@ app.post("/send", async (req, res) => {
         `;
 
         // ===== EMAIL CONFIG =====
+        let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com", 
+            port: 465, 
+            secure: true, 
+            auth: { 
+                user: "kkhardware2309@gmail.com", 
+                pass: "hvli hrwm yhsb hrjv" } 
+        }); 
+        // ===== SEND MAIL ===== 
+        const info = await transporter.sendMail({
+            from: "kkhardware2309@gmail.com", 
+            to: "kkhardware2309@gmail.com", 
+            subject: "🆕 New Inquiry - KK Hardware", 
+            html: html
+        });
+        console.log("Mail Sent:", info.response);
+        res.json({ message: "✅ Success" }); } 
+    catch (err) 
+    { console.log("❌ ERROR:", err);
+     res.status(500).json({ 
+         message: "Error", 
+         error: err.message 
+     });
+    } 
+});
         
     
-            let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: "kkhardware2309@gmail.com",
-        pass: "hvli hrwm yhsb hrjv"
-    }
-           tls: {
-        rejectUnauthorized: false
-    }
-});
-
-        // ===== SEND MAIL =====
-        const info = await transporter.sendMail({
-    from: "kkhardware2309@gmail.com",
-    to: "kkhardware2309@gmail.com",
-    subject: "🆕 New Inquiry - KK Hardware",
-    html: html
-});
-
-console.log("Mail Sent:", info.response);
-
-        res.json({ message: "✅ Success" });
-
-    } catch (err) {
-        console.log("❌ ERROR:", err);
-        res.status(500).json({ message: "Error", error: err.message });
-    }
-});
-
 // ================= START SERVER =================
 app.listen(3001, () => {
     console.log("🚀 Server running at http://localhost:3001");
