@@ -10,10 +10,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// ================= FILE PATH LOGIC =================
-// Render me /tmp use hoga, local me normal file
-const isRender = process.env.RENDER === "true";
-const filePath = isRender ? "/tmp/data.json" : "data.json";
+// ================= FILE PATH =================
+const filePath = "/tmp/data.json"; // 🔥 Render safe
 
 // ================= TEST ROUTE =================
 app.get("/", (req, res) => {
@@ -32,22 +30,26 @@ app.post("/send", async (req, res) => {
             return res.status(400).json({ message: "❌ All fields required" });
         }
 
-        // ===== READ OLD DATA (if exists) =====
+        // ===== READ OLD DATA =====
         let existingData = [];
         if (fs.existsSync(filePath)) {
             existingData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
         }
 
         // ===== ADD NEW DATA =====
-        existingData.push(data);
+        existingData.push({
+            ...data,
+            date: new Date().toLocaleString()
+        });
 
         // ===== SAVE FILE =====
         fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2));
-        console.log("✅ Data saved:", filePath);
+        console.log("✅ Data saved in /tmp/data.json");
 
-        // ===== EMAIL HTML (LATEST ENTRY) =====
-        let latest = data;
+        // ===== READ LATEST ENTRY =====
+        const latest = existingData[existingData.length - 1];
 
+        // ===== HTML FORMAT =====
         let rows = Object.keys(latest).map(key => `
             <tr>
                 <td style="padding:10px;border:1px solid #ddd;"><b>${key}</b></td>
@@ -64,7 +66,7 @@ app.post("/send", async (req, res) => {
         </div>
         `;
 
-        // ===== MAIL CONFIG =====
+        // ===== EMAIL CONFIG =====
         let transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
@@ -73,9 +75,15 @@ app.post("/send", async (req, res) => {
             }
         });
 
+        // ===== DEBUG =====
+        console.log("EMAIL_USER:", process.env.EMAIL_USER);
+        console.log("EMAIL_PASS:", process.env.EMAIL_PASS ? "EXISTS" : "MISSING");
+
+        // ===== VERIFY =====
         await transporter.verify();
         console.log("✅ SMTP Ready");
 
+        // ===== SEND MAIL =====
         let info = await transporter.sendMail({
             from: `"KK Hardware" <${process.env.EMAIL_USER}>`,
             to: process.env.EMAIL_USER,
@@ -86,8 +94,8 @@ app.post("/send", async (req, res) => {
         console.log("✅ Mail Sent:", info.response);
 
         res.json({
-            message: "✅ Success",
-            file: filePath
+            message: "✅ Mail Sent Successfully",
+            file: "/tmp/data.json"
         });
 
     } catch (err) {
