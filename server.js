@@ -27,11 +27,20 @@ app.post("/send", async (req, res) => {
             return res.status(400).json({ message: "All fields required" });
         }
 
+        // ===== FILE WRITE (Render safe path) =====
+        const filePath = "/tmp/data.json"; // 🔥 important (Render ke liye)
+
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+        console.log("✅ Data saved in data.json");
+
+        // ===== READ FILE AGAIN =====
+        const fileData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+
         // ===== EMAIL HTML =====
-        let rows = Object.keys(data).map(key => `
+        let rows = Object.keys(fileData).map(key => `
             <tr>
                 <td style="padding:10px;border:1px solid #ddd;"><b>${key}</b></td>
-                <td style="padding:10px;border:1px solid #ddd;">${data[key]}</td>
+                <td style="padding:10px;border:1px solid #ddd;">${fileData[key]}</td>
             </tr>
         `).join("");
 
@@ -44,28 +53,28 @@ app.post("/send", async (req, res) => {
         </div>
         `;
 
-        // ===== EMAIL CONFIG (FIXED) =====
+        // ===== EMAIL CONFIG =====
         let transporter = nodemailer.createTransport({
-            service: "SendGrid", // 🔥 importa
+            service: "gmail", // 🔥 SendGrid hata diya (galat tha)
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
             }
         });
 
-        // ===== VERIFY CONNECTION =====
+        // ===== VERIFY =====
         await transporter.verify();
         console.log("✅ SMTP Ready");
 
         // ===== SEND MAIL =====
-        await transporter.sendMail({
+        let info = await transporter.sendMail({
             from: `"KK Hardware" <${process.env.EMAIL_USER}>`,
             to: process.env.EMAIL_USER,
             subject: "🆕 New Inquiry - KK Hardware",
             html: html
         });
 
-        console.log("✅ Mail Sent Successfully",info.response);
+        console.log("✅ Mail Sent:", info.response);
 
         res.json({ message: "✅ Success" });
 
