@@ -10,6 +10,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// ================= FILE PATH LOGIC =================
+// Render me /tmp use hoga, local me normal file
+const isRender = process.env.RENDER === "true";
+const filePath = isRender ? "/tmp/data.json" : "data.json";
+
 // ================= TEST ROUTE =================
 app.get("/", (req, res) => {
     res.send("✅ Server Running Successfully");
@@ -22,51 +27,55 @@ app.post("/send", async (req, res) => {
 
         const data = req.body;
 
-        // ===== BASIC VALIDATION =====
+        // ===== VALIDATION =====
         if (!data.Name || !data.Email || !data["Mobile No"] || !data.Message) {
-            return res.status(400).json({ message: "All fields required" });
+            return res.status(400).json({ message: "❌ All fields required" });
         }
 
-        // ===== FILE WRITE (Render safe path) =====
-        const filePath = "/tmp/data.json"; // 🔥 important (Render ke liye)
+        // ===== READ OLD DATA (if exists) =====
+        let existingData = [];
+        if (fs.existsSync(filePath)) {
+            existingData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+        }
 
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-        console.log("✅ Data saved in data.json");
+        // ===== ADD NEW DATA =====
+        existingData.push(data);
 
-        // ===== READ FILE AGAIN =====
-        const fileData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+        // ===== SAVE FILE =====
+        fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2));
+        console.log("✅ Data saved:", filePath);
 
-        // ===== EMAIL HTML =====
-        let rows = Object.keys(fileData).map(key => `
+        // ===== EMAIL HTML (LATEST ENTRY) =====
+        let latest = data;
+
+        let rows = Object.keys(latest).map(key => `
             <tr>
                 <td style="padding:10px;border:1px solid #ddd;"><b>${key}</b></td>
-                <td style="padding:10px;border:1px solid #ddd;">${fileData[key]}</td>
+                <td style="padding:10px;border:1px solid #ddd;">${latest[key]}</td>
             </tr>
         `).join("");
 
         let html = `
         <div style="font-family:Arial;padding:20px;background:#f4f4f4">
-            <h2>New Customer Inquiry</h2>
+            <h2>🆕 New Customer Inquiry</h2>
             <table style="border-collapse:collapse;width:100%;background:#fff">
                 ${rows}
             </table>
         </div>
         `;
 
-        // ===== EMAIL CONFIG =====
+        // ===== MAIL CONFIG =====
         let transporter = nodemailer.createTransport({
-            service: "gmail", // 🔥 SendGrid hata diya (galat tha)
+            service: "gmail",
             auth: {
                 user: process.env.EMAIL_USER,
                 pass: process.env.EMAIL_PASS
             }
         });
 
-        // ===== VERIFY =====
         await transporter.verify();
         console.log("✅ SMTP Ready");
 
-        // ===== SEND MAIL =====
         let info = await transporter.sendMail({
             from: `"KK Hardware" <${process.env.EMAIL_USER}>`,
             to: process.env.EMAIL_USER,
@@ -76,12 +85,16 @@ app.post("/send", async (req, res) => {
 
         console.log("✅ Mail Sent:", info.response);
 
-        res.json({ message: "✅ Success" });
+        res.json({
+            message: "✅ Success",
+            file: filePath
+        });
 
     } catch (err) {
         console.error("❌ ERROR:", err);
+
         res.status(500).json({
-            message: "Mail Failed",
+            message: "❌ Mail Failed",
             error: err.message
         });
     }
